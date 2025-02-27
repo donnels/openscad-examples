@@ -192,6 +192,24 @@ include::./Network/test.scad[]
 ----
 
 
+=== Projector - Project
+
+
+
+
+==== Control-Electronics - 3D Object
+
+
+
+.image
+image::./openscad/Projector/Control-Electronics.png[]
+
+.Openscad source
+----
+include::./Projector/Control-Electronics.scad[]
+----
+
+
 === RollHolder - Project
 
 
