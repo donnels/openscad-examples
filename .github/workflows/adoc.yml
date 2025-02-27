@@ -1,0 +1,90 @@
+
+
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: asciidoc pdf and html
+
+on:
+  push:
+    paths:
+      - 'openscad/**'
+      - '**.adoc'
+      - '**.asciidoc'
+      - '.github/workflows/adoc.yml'
+    branches: [ "main" ]
+    # Publish semver tags as releases.
+    tags: [ 'v*.*.*' ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    env:
+      container_asciidoc: ghcr.io/donnels/asciidoc:main
+      container_openscad: ghcr.io/donnels/openscad:main
+      
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Pull the containers required to build
+        id: pull-containers
+        run: |
+          #This really just makes the pull shorter if there are more than one to pull
+          docker pull $container_asciidoc &
+          docker pull $container_openscad &
+          wait
+
+      - name: Conditional Scad build
+        id: part-build-scad
+        run: |
+          git diff-tree -r --no-commit-id --summary ${{ github.sha }} \
+          | awk -F' ' '{
+            # ensure we are not trying to process deleted files
+            # only process scad files
+            # do not try to process our theme or custom config
+            if ( $1 !~ /^delete$/ && $4 ~ /\.scad$/ && $4 !~ /(theme|config)\.scad$/ )
+            {
+              # only print the file name and strip newlines for spaces
+              printf "::set-output name=files::" "%s ", $4
+            }
+          }
+          END { print "" } # ensure we do print a newline at the end
+          '
+      - name: SCAD files considered echo output
+        run: |
+          echo ${{ steps.part-build-scad.outputs.files }}
+          
+      - name: run openscad container against this repo
+        run: |
+          cd openscad ; find . -name "*.scad" -type f | while read filename
+          do  
+          echo "looping into $filename"
+          scadfile="$(basename "$filename")" ; file="$(basename -s".scad" "$filename")" ; dir="$(dirname "$filename")"
+          echo "Moving into $dir" ; cd "$dir" ; echo "build it" ; echo "directory= $dir netto file= $file scadfile= $scadfile" 
+          #This isnt working properly... need to check the file dates before and after
+          docker run --rm --name "openscad-png" --volume "$PWD":/data $container_openscad openscad --imgsize 1280,720 --colorscheme Tomorrow -o "/data/${file}.png" "/data/${scadfile}" &
+          docker run --rm --name "openscad-stl" --volume "$PWD":/data $container_openscad openscad -o "/data/${file}.stl" "/data/${scadfile}" &
+          wait
+          echo "back to previous" ; cd - ; echo
+          done
+          . ./indexer.sh
+
+      - name: Make the PDFs and HTMLs
+        id: asciidoc-2-html-and-pdf
+        run: |
+          docker run -v "$PWD":/documents/ --name asciidoc-to-pdf $container_asciidoc asciidoctor-pdf -D /documents/docs *.asciidoc
+          docker run -v "$PWD":/documents/ --name asciidoc-to-html $container_asciidoc asciidoctor -D /documents/docs *.asciidoc
+
+      - name: Check for modified files
+        id: git-check
+        run: echo ::set-output name=modified::$(if [ -n "$(git status --porcelain)" ]; then echo "true"; else echo "false"; fi)
+      - name: Update changes in GitHub repository
+        if: steps.git-check.outputs.modified == 'true'
+        run:  |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m '[automated commit] push changed files from actions'
+          git push

@@ -1,0 +1,87 @@
+= OpenScad examples
+//
+//General DOC INFO
+:year: 2022
+:org: VSR
+:copyright: (CC BY-NC 4.0){year} Sean Donnellan
+:classification: {org} - Un-classified
+:GH-org: donnels
+:GH-repo: openscad-examples
+:repo-file: README
+//
+// URLs
+:GH-url: https://github.com
+:GH-url-pages: https://{GH-org}.github.io
+:url-org: {GH-url}/{GH-org}
+:url-repo: {url-org}/{GH-repo}
+:url-repo-pages: {GH-url-pages}/{GH-repo}/{repo-file}.html
+:url-repo-pages-pdf: {GH-url-pages}/{GH-repo}/{repo-file}.pdf
+//
+//GITHUB settings
+ifdef::env-github[]
+:toc:
+:toc-placement!:
+:status:
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+include::includes/asciidoc-format-header.adoc[]
+
+ifdef::env-github[toc::[]]
+
+== Document information
+
+====
+.Links to Document
+ifndef::env-github[]
+:hardbreaks-option:
+icon:compass[2x,link="{url-repo-pages}"] Document online
+icon:github[2x,link="{url-repo}"] Document Source
+icon:file-pdf-o[2x,link="{url-repo-pages-pdf}"] Document PDF
+
+:!hardbreaks-option:
+endif::env-github[]
+ifdef::env-github[]
+* link:{url-repo-pages}[Document online ^]
+* link:{url-repo}[Document Source ^]
+* link:{url-repo-pages-pdf}[Document PDF ^]
+endif::env-github[]
+====
+
+//
+// MAIN DOC
+//
+
+Experimental repo for building openscad files into different outputs.
+This is still work in progress but can already build a png and stl of each scad file in the opescad directories.
+See the online or pdf versions for the images as the readme is realy only the source and right now is not WYSIWYG!
+
+== Output
+
+include::./openscad/index.adoc[]
+
+[appendix]
+== To do
+
+Right now the github source is not perfect as the readme does not display the images when viewed in github.
+
+* [ ] Add a readme in the directories or fix asciidoc to deal with asciidoc not showing in github
+* [ ] Split the build scruipts to handle scad/plantuml/asciidoc in separate steps depending on changes
+** [x] The scad build already ony builds scad files that exist and is fed by find
+*** [ ] Feed with a list of changed scad files instead of the more simple find
+* [ ] Add further process steps for the images like meshlabserver to do furhter processing:
+** Stuff (glass rendering, wireframe, mesh magic, stats, etc.)
+* [x] Need to add subdirectories to pool projects together
+** [x] build index for subdirs
+** [x] need to make the scad build fit to the subdir model
+** [x] add check for empty directory (no scad files)
+*** [x] only build scad files and only run container with scad files (empties ignored)
+* [ ] Add further optional scad steps
+** [ ] Need to add view parameters as options
+** [ ] Need to add animation options
+* [x] Need to add text display option for each item
+* [ ] Allow adding photos to the objects or projects to show makes
+* [ ] investigate including a js or similar stl viewer for html

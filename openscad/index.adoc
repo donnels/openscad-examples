@@ -1,0 +1,1299 @@
+
+=== Amplifier - Project
+
+
+
+
+==== VacuumPCBbase - 3D Object
+
+The base for the PCB to sit on in the Box.
+It's needed to raise the PCB so that the Tubes are on (better) display out of the top of the lid.
+
+.image
+image::./openscad/Amplifier/VacuumPCBbase.png[]
+
+.Openscad source
+----
+include::./Amplifier/VacuumPCBbase.scad[]
+----
+
+
+==== VacuumPreAmplifierBase - 3D Object
+
+
+housing a retro vacuum tube china preamp.
+Have a nice wooden box that is looking for some use as a housing The pre-amp is a cheap vaccum tube type sourced from aliexpress https://a.aliexpress.com/_B0MVMZ
+I've created an openscad model of the Box based on some measurments with a calliper. The model is designed to help asses where to drill holes and to print a guide to drill the holes. The preamp has a power input (12v~) an in and an output (headphone jack) and a Volume potentiometer. Also the housing is to expose the Vacuum Tubes to the interested viewer. Since the lid is hinged and the relative position of the tubes to the lid, when opening, is difficult to eyeball the model was created to try out different Hole placments as well as providing a template for Drill guides.
+
+.image
+image::./openscad/Amplifier/VacuumPreAmplifierBase.png[]
+
+.Openscad source
+----
+include::./Amplifier/VacuumPreAmplifierBase.scad[]
+----
+
+
+==== vacuumRadioCase - 3D Object
+
+Mount for the separte Vacuum tube radio kit mounted into a bamboo case.
+This is for the replacement lid with markings and mounting holes for the switches etc.
+
+.image
+image::./openscad/Amplifier/vacuumRadioCase.png[]
+
+.Openscad source
+----
+include::./Amplifier/vacuumRadioCase.scad[]
+----
+
+
+=== Axle - Project
+
+
+
+
+==== Axle - 3D Object
+
+required a screw and didn't have one.
+
+.image
+image::./openscad/Axle/Axle.png[]
+
+.Openscad source
+----
+include::./Axle/Axle.scad[]
+----
+
+
+=== Howth-cieling-spots - Project
+
+
+The spots for the ceiling in Howth needed replacing and the replacement spots had a few millimeters too little radius so that they didn't cover the hole properly in all places.
+The lamp ring was a quick fix that turned out quite well and looks good.
+
+
+==== lampRing - 3D Object
+
+
+This object is not very complex and it's really just a few cylinders laid on top of one another with a few holes cut out for the lamp.
+
+.image
+image::./openscad/Howth-cieling-spots/lampRing.png[]
+
+.Openscad source
+----
+include::./Howth-cieling-spots/lampRing.scad[]
+----
+
+
+=== Ikea-Repair - Project
+
+
+
+
+==== ikeabung - 3D Object
+
+This was a replacement foot for an IKEA shelf.
+
+The actual foot was screwed in with a bolt on the underside.
+
+.image
+image::./openscad/Ikea-Repair/ikeabung.png[]
+
+.Openscad source
+----
+include::./Ikea-Repair/ikeabung.scad[]
+----
+
+
+=== Jetson - Project
+
+
+
+
+==== geekworm - 3D Object
+
+
+
+.image
+image::./openscad/Jetson/geekworm.png[]
+
+.Openscad source
+----
+include::./Jetson/geekworm.scad[]
+----
+
+
+==== power-ring - 3D Object
+
+
+
+.image
+image::./openscad/Jetson/power-ring.png[]
+
+.Openscad source
+----
+include::./Jetson/power-ring.scad[]
+----
+
+
+=== Liebherr - Project
+
+
+
+
+==== fridgeDoorInterimHandle - 3D Object
+
+
+
+.image
+image::./openscad/Liebherr/fridgeDoorInterimHandle.png[]
+
+.Openscad source
+----
+include::./Liebherr/fridgeDoorInterimHandle.scad[]
+----
+
+
+=== Model-Plane - Project
+
+
+
+
+==== mountingplateaircraftmotor - 3D Object
+
+
+
+.image
+image::./openscad/Model-Plane/mountingplateaircraftmotor.png[]
+
+.Openscad source
+----
+include::./Model-Plane/mountingplateaircraftmotor.scad[]
+----
+
+
+=== Network - Project
+
+
+
+
+==== test - 3D Object
+
+
+
+.image
+image::./openscad/Network/test.png[]
+
+.Openscad source
+----
+include::./Network/test.scad[]
+----
+
+
+=== RollHolder - Project
+
+
+
+
+==== rollholder - 3D Object
+
+
+
+.image
+image::./openscad/RollHolder/rollholder.png[]
+
+.Openscad source
+----
+include::./RollHolder/rollholder.scad[]
+----
+
+
+==== stopfen - 3D Object
+
+
+
+.image
+image::./openscad/RollHolder/stopfen.png[]
+
+.Openscad source
+----
+include::./RollHolder/stopfen.scad[]
+----
+
+
+=== SWD - Project
+
+
+
+
+==== swd-cube - 3D Object
+
+
+
+.image
+image::./openscad/SWD/swd-cube.png[]
+
+.Openscad source
+----
+include::./SWD/swd-cube.scad[]
+----
+
+
+=== Test - Project
+
+
+
+
+==== Test - 3D Object
+
+Just a simple example and also used as the logo for this repo.
+
+.image
+image::./openscad/Test/Test.png[]
+
+.Openscad source
+----
+include::./Test/Test.scad[]
+----
+
+
+==== Thinkpad_logo - 3D Object
+
+
+
+.image
+image::./openscad/Test/Thinkpad_logo.png[]
+
+.Openscad source
+----
+include::./Test/Thinkpad_logo.scad[]
+----
+
+
+==== vectorbox-test - 3D Object
+
+
+
+.image
+image::./openscad/Test/vectorbox-test.png[]
+
+.Openscad source
+----
+include::./Test/vectorbox-test.scad[]
+----
+
+
+=== ThingsByOthers - Project
+
+
+
+
+==== SQ11-15 - 3D Object
+
+
+
+.image
+image::./openscad/ThingsByOthers/SQ11-15.png[]
+
+.Openscad source
+----
+include::./ThingsByOthers/SQ11-15.scad[]
+----
+
+
+==== Terrain - 3D Object
+
+
+
+.image
+image::./openscad/ThingsByOthers/Terrain.png[]
+
+.Openscad source
+----
+include::./ThingsByOthers/Terrain.scad[]
+----
+
+
+==== Topology - 3D Object
+
+
+
+.image
+image::./openscad/ThingsByOthers/Topology.png[]
+
+.Openscad source
+----
+include::./ThingsByOthers/Topology.scad[]
+----
+
+
+==== notmine1 - 3D Object
+
+
+
+.image
+image::./openscad/ThingsByOthers/notmine1.png[]
+
+.Openscad source
+----
+include::./ThingsByOthers/notmine1.scad[]
+----
+
+
+==== velcro - 3D Object
+
+
+
+.image
+image::./openscad/ThingsByOthers/velcro.png[]
+
+.Openscad source
+----
+include::./ThingsByOthers/velcro.scad[]
+----
+
+
+=== VSAGCRD-Logo - Project
+
+
+
+
+==== vsagcrd - 3D Object
+
+
+
+.image
+image::./openscad/VSAGCRD-Logo/vsagcrd.png[]
+
+.Openscad source
+----
+include::./VSAGCRD-Logo/vsagcrd.scad[]
+----
+
+
+=== Vacuum-rig-adapter - Project
+
+
+
+
+==== Hose_Adaptor - 3D Object
+
+
+Not one of mine:
+Created by Paul Tibble - 18/7/19            
+* https://www.thingiverse.com/Paul_Tibble/about
+
+.image
+image::./openscad/Vacuum-rig-adapter/Hose_Adaptor.png[]
+
+.Openscad source
+----
+include::./Vacuum-rig-adapter/Hose_Adaptor.scad[]
+----
+
+
+=== balcony-storage - Project
+
+
+
+
+==== Solar-equip-cover - 3D Object
+
+
+
+.image
+image::./openscad/balcony-storage/Solar-equip-cover.png[]
+
+.Openscad source
+----
+include::./balcony-storage/Solar-equip-cover.scad[]
+----
+
+
+==== microshed - 3D Object
+
+
+
+.image
+image::./openscad/balcony-storage/microshed.png[]
+
+.Openscad source
+----
+include::./balcony-storage/microshed.scad[]
+----
+
+
+=== bcn3d - Project
+
+
+
+
+==== bcn3d-cam-mount - 3D Object
+
+
+
+.image
+image::./openscad/bcn3d/bcn3d-cam-mount.png[]
+
+.Openscad source
+----
+include::./bcn3d/bcn3d-cam-mount.scad[]
+----
+
+
+=== bins - Project
+
+
+
+
+==== draft-holder - 3D Object
+
+
+
+.image
+image::./openscad/bins/draft-holder.png[]
+
+.Openscad source
+----
+include::./bins/draft-holder.scad[]
+----
+
+
+==== strutinsert - 3D Object
+
+
+
+.image
+image::./openscad/bins/strutinsert.png[]
+
+.Openscad source
+----
+include::./bins/strutinsert.scad[]
+----
+
+
+=== cmount - Project
+
+
+
+
+==== 2cmount - 3D Object
+
+
+
+.image
+image::./openscad/cmount/2cmount.png[]
+
+.Openscad source
+----
+include::./cmount/2cmount.scad[]
+----
+
+
+=== cookie-press - Project
+
+
+
+
+==== star - 3D Object
+
+Just a test to see if one can print shapes for a cookie press.
+
+.image
+image::./openscad/cookie-press/star.png[]
+
+.Openscad source
+----
+include::./cookie-press/star.scad[]
+----
+
+
+=== coords - Project
+
+
+
+
+==== koord-rund - 3D Object
+
+
+
+.image
+image::./openscad/coords/koord-rund.png[]
+
+.Openscad source
+----
+include::./coords/koord-rund.scad[]
+----
+
+
+==== koordinaten - 3D Object
+
+
+
+.image
+image::./openscad/coords/koordinaten.png[]
+
+.Openscad source
+----
+include::./coords/koordinaten.scad[]
+----
+
+
+=== desk - Project
+
+
+
+
+==== fastener - 3D Object
+
+This is a fastener for a writing Desk.
+The idea is to add a magnet to hold it up and to print it so that it does not require a bearing.
+
+* V1 is the first prototype for a first print test and fitting test
+** fits well and axle didn't print free so need update
+** The reason was that the axle required supports winside the part to build
+** Changed the axle to 45 degree angles to negate the need for supports
+* V2 added a better axle but didn't get printed
+* V3 added a better cutout and is printed
+** The cutout is currently a dummy pending getting the axle to work to try it out with magnets taped into place
+** axle prints freely so moving on to screw holes, magnets, and covers
+* V4 Added final OCD logo and screw caps etc.
+** Mounted and working.
+
+.image
+image::./openscad/desk/fastener.png[]
+
+.Openscad source
+----
+include::./desk/fastener.scad[]
+----
+
+
+=== fritzring - Project
+
+
+
+
+==== Freez-ring - 3D Object
+
+
+
+.image
+image::./openscad/fritzring/Freez-ring.png[]
+
+.Openscad source
+----
+include::./fritzring/Freez-ring.scad[]
+----
+
+
+==== fritzcolaadapter - 3D Object
+
+
+
+.image
+image::./openscad/fritzring/fritzcolaadapter.png[]
+
+.Openscad source
+----
+include::./fritzring/fritzcolaadapter.scad[]
+----
+
+
+=== geo-test - Project
+
+
+
+
+==== geoTest - 3D Object
+
+This is not one of mine and I just kiked it as a good example.
+I did correct some mistakes in it though.
+
+.image
+image::./openscad/geo-test/geoTest.png[]
+
+.Openscad source
+----
+include::./geo-test/geoTest.scad[]
+----
+
+
+=== kitchen-door - Project
+
+
+
+
+==== KitchenDoorHoleStopper - 3D Object
+
+
+
+.image
+image::./openscad/kitchen-door/KitchenDoorHoleStopper.png[]
+
+.Openscad source
+----
+include::./kitchen-door/KitchenDoorHoleStopper.scad[]
+----
+
+
+==== skirtingpatch - 3D Object
+
+
+
+.image
+image::./openscad/kitchen-door/skirtingpatch.png[]
+
+.Openscad source
+----
+include::./kitchen-door/skirtingpatch.scad[]
+----
+
+
+==== strikeplate - 3D Object
+
+
+
+.image
+image::./openscad/kitchen-door/strikeplate.png[]
+
+.Openscad source
+----
+include::./kitchen-door/strikeplate.scad[]
+----
+
+
+=== led-Casing - Project
+
+
+
+
+==== CasingLED - 3D Object
+
+
+
+.image
+image::./openscad/led-Casing/CasingLED.png[]
+
+.Openscad source
+----
+include::./led-Casing/CasingLED.scad[]
+----
+
+
+=== midleton - Project
+
+
+
+
+==== internal-volume - 3D Object
+
+the internal Volume of a presentation box to test ideas on.
+
+.image
+image::./openscad/midleton/internal-volume.png[]
+
+.Openscad source
+----
+include::./midleton/internal-volume.scad[]
+----
+
+
+==== midletoninset - 3D Object
+
+
+
+.image
+image::./openscad/midleton/midletoninset.png[]
+
+.Openscad source
+----
+include::./midleton/midletoninset.scad[]
+----
+
+
+==== test - 3D Object
+
+
+
+.image
+image::./openscad/midleton/test.png[]
+
+.Openscad source
+----
+include::./midleton/test.scad[]
+----
+
+
+=== modelTruckRepair - Project
+
+
+
+
+==== steeringaxle - 3D Object
+
+
+
+.image
+image::./openscad/modelTruckRepair/steeringaxle.png[]
+
+.Openscad source
+----
+include::./modelTruckRepair/steeringaxle.scad[]
+----
+
+
+=== monitor - Project
+
+
+
+
+==== buttonBack - 3D Object
+
+Button backing for the monitor.
+
+.image
+image::./openscad/monitor/buttonBack.png[]
+
+.Openscad source
+----
+include::./monitor/buttonBack.scad[]
+----
+
+
+==== housing - 3D Object
+
+
+
+.image
+image::./openscad/monitor/housing.png[]
+
+.Openscad source
+----
+include::./monitor/housing.scad[]
+----
+
+
+==== screen_mounting_tabs - 3D Object
+
+
+
+.image
+image::./openscad/monitor/screen_mounting_tabs.png[]
+
+.Openscad source
+----
+include::./monitor/screen_mounting_tabs.scad[]
+----
+
+
+=== odroid-case - Project
+
+
+
+
+==== Library-container - 3D Object
+
+
+This is the Library for the case.
+I sourced the methods out so as to be able to re-use them better.
+
+.image
+image::./openscad/odroid-case/Library-container.png[]
+
+.Openscad source
+----
+include::./odroid-case/Library-container.scad[]
+----
+
+
+==== case - 3D Object
+
+A case for an odroid handgeld console and accessories.
+
+The edges are rounded and there are cutouts for the parts that protrude from the console.
+
+.image
+image::./openscad/odroid-case/case.png[]
+
+.Openscad source
+----
+include::./odroid-case/case.scad[]
+----
+
+
+=== openai - Project
+
+I decided to have a go to see where openAI's chatGPT has its limits.
+And it does have limits.
+It's intersting to see that while it seems to know what an object might consist of it has a very hard time making the onject in any way accurate.
+In any case it's Interesting.
+
+
+==== esp8266case-chatgpt - 3D Object
+
+This one is also interesting in that it does some difference etc but it's really not a model of a case.
+It looks like it get's the basic premise of subtracting one thing from another etc.
+On the other hand it doesn't seem to have a clue about dimensions.
+Either way an interesting experimt which shows up the limitations of GPT models.
+
+.image
+image::./openscad/openai/esp8266case-chatgpt.png[]
+
+.Openscad source
+----
+include::./openai/esp8266case-chatgpt.scad[]
+----
+
+
+==== solar-generator-chatgpt - 3D Object
+
+This is also an interesting experiment.
+I asked chatGPT to make a solar generator openscad model and this came out.
+On the other hand it seems to be good at figuring out what should be part of a solar generator.
+I'll have to take closer look of what it did here and how hard it is to fix it.
+This could be promising in total but right now it more or less seems to have hit a brick wall that seems to relate to dimensions etc.
+In other words it's good at creating a structure but not so good at understanding the physics of what it made.
+
+.image
+image::./openscad/openai/solar-generator-chatgpt.png[]
+
+.Openscad source
+----
+include::./openai/solar-generator-chatgpt.scad[]
+----
+
+
+==== teacup-chatgpt - 3D Object
+
+What chatGPT thinks a teacup could look like in openscad.
+It's interesting to see that it's sructured and syntacticly more or less correct but is also not a tea cup.
+
+.image
+image::./openscad/openai/teacup-chatgpt.png[]
+
+.Openscad source
+----
+include::./openai/teacup-chatgpt.scad[]
+----
+
+
+=== piZero - Project
+
+
+* Required for a rpi zero cluster
+* need to add a few extra parts
+** a holder for a USB hub
+** A holder for the PSU
+** some extra stuff
+
+
+==== RPI_zero_Cluster_mounting_bracket_power - 3D Object
+
+
+
+.image
+image::./openscad/piZero/RPI_zero_Cluster_mounting_bracket_power.png[]
+
+.Openscad source
+----
+include::./piZero/RPI_zero_Cluster_mounting_bracket_power.scad[]
+----
+
+
+==== RPI_zero_Cluster_mounting_bracket_v2 - 3D Object
+
+
+
+.image
+image::./openscad/piZero/RPI_zero_Cluster_mounting_bracket_v2.png[]
+
+.Openscad source
+----
+include::./piZero/RPI_zero_Cluster_mounting_bracket_v2.scad[]
+----
+
+
+==== RPi_zero_mount - 3D Object
+
+This also is NOT one of mine but I've cleaned it up a bit as it wasn't displaying correctly. I needed it for a pi cluster and as it's quite good I didn't reinvent the wheel here.
+
+
+.image
+image::./openscad/piZero/RPi_zero_mount.png[]
+
+.Openscad source
+----
+include::./piZero/RPi_zero_mount.scad[]
+----
+
+
+==== piZeroCluster-power - 3D Object
+
+
+
+.image
+image::./openscad/piZero/piZeroCluster-power.png[]
+
+.Openscad source
+----
+include::./piZero/piZeroCluster-power.scad[]
+----
+
+
+=== powercover - Project
+
+
+
+
+==== corner-powercover - 3D Object
+
+
+
+.image
+image::./openscad/powercover/corner-powercover.png[]
+
+.Openscad source
+----
+include::./powercover/corner-powercover.scad[]
+----
+
+
+=== projector - Project
+
+
+
+
+==== lid - 3D Object
+
+
+
+.image
+image::./openscad/projector/lid.png[]
+
+.Openscad source
+----
+include::./projector/lid.scad[]
+----
+
+
+=== rack - Project
+
+
+
+
+==== example-rack - 3D Object
+
+This is an openscad library and some examples used to display racks.
+
+.image
+image::./openscad/rack/example-rack.png[]
+
+.Openscad source
+----
+include::./rack/example-rack.scad[]
+----
+
+
+==== include-Modules-v1 - 3D Object
+
+
+
+.image
+image::./openscad/rack/include-Modules-v1.png[]
+
+.Openscad source
+----
+include::./rack/include-Modules-v1.scad[]
+----
+
+
+==== include-Settings-rack-42RU-twin-80x120x200 - 3D Object
+
+
+
+.image
+image::./openscad/rack/include-Settings-rack-42RU-twin-80x120x200.png[]
+
+.Openscad source
+----
+include::./rack/include-Settings-rack-42RU-twin-80x120x200.scad[]
+----
+
+
+==== logo-VSR - 3D Object
+
+
+
+.image
+image::./openscad/rack/logo-VSR.png[]
+
+.Openscad source
+----
+include::./rack/logo-VSR.scad[]
+----
+
+
+=== rePhone - Project
+
+
+* rephone components and case design
+* Stl files added from thingiverse
+* Scad file also as holder for stls from thingiverse
+* Reference material only for now
+
+
+==== RePhone_ALL - 3D Object
+
+
+
+.image
+image::./openscad/rePhone/RePhone_ALL.png[]
+
+.Openscad source
+----
+include::./rePhone/RePhone_ALL.scad[]
+----
+
+
+==== RePhone_handset - 3D Object
+
+
+
+.image
+image::./openscad/rePhone/RePhone_handset.png[]
+
+.Openscad source
+----
+include::./rePhone/RePhone_handset.scad[]
+----
+
+
+==== xadow - 3D Object
+
+
+
+.image
+image::./openscad/rePhone/xadow.png[]
+
+.Openscad source
+----
+include::./rePhone/xadow.scad[]
+----
+
+
+=== reolink - Project
+
+
+
+
+==== doorbell-mount - 3D Object
+
+Created to mount a reolink doorbell and make it more recognizable.
+
+.image
+image::./openscad/reolink/doorbell-mount.png[]
+
+.Openscad source
+----
+include::./reolink/doorbell-mount.scad[]
+----
+
+
+=== schuko - Project
+
+
+
+
+==== plug2 - 3D Object
+
+
+
+.image
+image::./openscad/schuko/plug2.png[]
+
+.Openscad source
+----
+include::./schuko/plug2.scad[]
+----
+
+
+==== schuko-plug - 3D Object
+
+
+
+.image
+image::./openscad/schuko/schuko-plug.png[]
+
+.Openscad source
+----
+include::./schuko/schuko-plug.scad[]
+----
+
+
+==== schuko - 3D Object
+
+
+
+.image
+image::./openscad/schuko/schuko.png[]
+
+.Openscad source
+----
+include::./schuko/schuko.scad[]
+----
+
+
+=== shutterholders - Project
+
+
+
+
+==== shutterholder - 3D Object
+
+
+
+.image
+image::./openscad/shutterholders/shutterholder.png[]
+
+.Openscad source
+----
+include::./shutterholders/shutterholder.scad[]
+----
+
+
+=== solar - Project
+
+
+
+
+==== balcony - 3D Object
+
+
+
+.image
+image::./openscad/solar/balcony.png[]
+
+.Openscad source
+----
+include::./solar/balcony.scad[]
+----
+
+
+==== smallpv - 3D Object
+
+
+
+.image
+image::./openscad/solar/smallpv.png[]
+
+.Openscad source
+----
+include::./solar/smallpv.scad[]
+----
+
+
+=== spool-holder - Project
+
+
+
+
+==== spool - 3D Object
+
+
+
+.image
+image::./openscad/spool-holder/spool.png[]
+
+.Openscad source
+----
+include::./spool-holder/spool.scad[]
+----
+
+
+=== sword - Project
+
+
+
+
+==== blade - 3D Object
+
+
+
+.image
+image::./openscad/sword/blade.png[]
+
+.Openscad source
+----
+include::./sword/blade.scad[]
+----
+
+
+==== crossguard - 3D Object
+
+This is for a plastic play "Katana" sword to make it more like a "One Piece" "Gryphon" sword.
+The tiff files are the original sword cross guard from both sides so as to extrude the mounting holes for the handle and the sword.
+The idea is to go from scanner to tiff.
+Then from tiff to SVG.
+Then from SVG to STL.
+Then in openscad to subtract te shapes from the crossguard and to send it off to Cura and then to octoprint.
+
+.image
+image::./openscad/sword/crossguard.png[]
+
+.Openscad source
+----
+include::./sword/crossguard.scad[]
+----
+
+
+==== hilt - 3D Object
+
+
+
+.image
+image::./openscad/sword/hilt.png[]
+
+.Openscad source
+----
+include::./sword/hilt.scad[]
+----
+
+
+=== tesa - Project
+
+
+
+
+==== tesa - 3D Object
+
+
+
+.image
+image::./openscad/tesa/tesa.png[]
+
+.Openscad source
+----
+include::./tesa/tesa.scad[]
+----
+
+
+=== thumb-screw - Project
+
+
+
+
+==== Knurl - 3D Object
+
+
+
+.image
+image::./openscad/thumb-screw/Knurl.png[]
+
+.Openscad source
+----
+include::./thumb-screw/Knurl.scad[]
+----
+

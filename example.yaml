@@ -1,0 +1,20 @@
+name: Compile Changed OpenSCAD Files
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: openscad/openscad:latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Compile changed OpenSCAD files
+      run: |
+        CHANGED_FILES=$(git diff --name-only $GITHUB_SHA)
+        for FILE in $CHANGED_FILES; do
+          if [[ $FILE == *.scad ]]; then
+            openscad -o ${FILE%.*}.stl $FILE
+          fi
+        done

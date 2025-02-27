@@ -1,0 +1,31 @@
+//
+//DOC Formatiing and style
+:title-page:
+:toc: right
+:!sectnums:
+:sectnumlevels: 5
+:toclevels: 5
+:data-uri:
+:allow-uri-read: true
+:doctype: paper
+//set bookflag in main document if adding chapters etc that will be built solo AND integrated
+:book-flag: true
+:icons: font
+:listing-caption: Listing
+:source-highlighter: rouge
+//
+//PATHS
+:localdir: ./
+:imagesdir: {localdir}
+:libdir: /build/lib
+//
+//PDF options
+:pdf-page-size: A4
+:pdf-theme: theme-{org}.yml
+:pdf-themesdir: {libdir}/themes
+:pdf-fontsdir: {libdir}/fonts
+:title-logo-image: image:includes/test.png[pdfwidth=2in,align=right]
+//
+//HTML options
+:!reproducible:
+include::{pdf-themesdir}/theme-{org}-favicon.adoc[]
