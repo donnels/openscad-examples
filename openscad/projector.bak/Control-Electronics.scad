@@ -110,8 +110,18 @@ module OLED() {
     }
 }
 module pin() {
+    //for test fitting the PCB only
     pinH = 10 ; pinD1 =5 ; pinD2 = 2;
     cylinder(h = pinH, d1 = pinD1, d2 = pinD2);
+}
+
+module heatInset(height) {
+    //instead of Pin for final heat inset mounting
+    difference() {
+        cylinder(h=height,d=7);
+        //inside
+        translate([0,0,-.01]) cylinder(h=height+.02,d=4.8);
+    }
 }
 module emboss(height,halign,text){
     height = height + .02 ;
@@ -134,11 +144,12 @@ module OLEDhole() {
 
 //PCB mount
 union() {
-    translate([-3,-3,0]) cube([76,50,1]);
-    translate([0,0,0]) pin();
-    translate([0,44.5,0]) pin();
-    translate([70,0,0]) pin();
+    translate([-4,-5,0]) cube([78,54,2]);
+    translate([0,0,0]) heatInset(10);
+    translate([0,44.5,0]) heatInset(10);
+    translate([70,0,0]) heatInset(10);
 }
+
 
 //toggles
 translate([0,-50,0]) difference() {
@@ -167,4 +178,13 @@ translate([0,-100,0]) difference() {
     }
 }
 
-translate([-40,0,0]) motor("offset");
+translate([-75,0,0]) motor("offset");
+
+translate([-70,-80,0]) union() {
+    //approximation of cross sectio on casing!!! DRAFT
+    cubeTest = [90,37,2] ;
+    cube(cubeTest,center=true);
+    rotate([0,0,45])cube(cubeTest,center=true);
+    rotate([0,0,90])cube(cubeTest,center=true);
+    rotate([0,0,135])cube(cubeTest,center=true);
+}

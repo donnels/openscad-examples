@@ -1,0 +1,12 @@
+
+The original lid replacement I printed was needed to hold the existing blasted thing together at all.
+The lid is missing a mount for the ugly box it's holding together so that this is probably better than designing a mount.
+Right now the electronics just hang around (in the box with a lid) and look and feel ugly (while working).
+Did I mention that the original had developed a fault that was solved by re-soldering the 220V side?
+
+The screen uses a 230V 60KTYZ motor (with a centered shaft and 5RPM).
+The screen has adjustable end stops that are micro switches that cut the power to either up or down power.
+The end stops are activated when the screen axle is rotated and then also moves the stopper left or right along a lead screw attached to the axle.
+The electronics just need to provide power for a period x that is longer than from one end stop to the other.
+The electronics do NOT know the state of the screen.
+Maybe adding a current sense probe or two might help there.... or not worth the trouble.
