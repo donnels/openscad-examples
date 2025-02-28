@@ -197,19 +197,6 @@ include::./Network/test.scad[]
 
 
 
-==== Control-Electronics - 3D Object
-
-
-
-.image
-image::./openscad/Projector/Control-Electronics.png[]
-
-.Openscad source
-----
-include::./Projector/Control-Electronics.scad[]
-----
-
-
 === RollHolder - Project
 
 
@@ -982,6 +969,64 @@ include::./powercover/corner-powercover.scad[]
 === projector - Project
 
 
+
+
+==== Control-Electronics - 3D Object
+
+This is for a motorized projector screen (3m wide).
+
+.The motor used is a:
+* 60KTYZ 220VAC 15RPM chinese motor
+
+.The existing electronics (controls) are:
+* A bit dated
+* An ugly rectangular box of semi transparent hard plastic
+* Repaired (220V side needed resoldering)
+* Only have an IR remote control (that doesn't work)
+* Have yanky up/stop/down keys that are not very:
+** responsive
+** nice
+** tactile
+** etc
+* An ugly shade of cream
+* have a nasty red LED thats always on
+* are Always on
+* and have a few other niggling cosmetic issues that would make a designer get sick in a bucket
+* Are in general just shy of rip and replace by a hair's width
+
+The screen is on an axle that is rotated by the motor. 
+The axle also rotates a lead screw that moves a plastic card left or right.
+The card depresses either a left or right micro switch that cuts power for that direction.
+Both end stops can be adjusted individually.
+The electronics have NO knowledge of the state and instead just turn on the up or down power for a period of time.
+The period of time is greater than the time to travel the distance between the end-stops.
+
+.The new controls have:
+* Two triple position toggle switches (220VAC)
+** Auto/OFF/Manual
+** Up/stop/down (when set to manual)
+* An ESP32 with wifi and two relays
+** One for controls power (NO/NC) that sequentially connects to the other 
+*** That turns the motor left or right (NO/NC)
+* optionally a status neo pixel for when in wifi mode (will bother)
+* optionally a mini Oled (might not bother)
+
+The aim is that the new controls are placed right next to the screen and allow manual OR networked control.
+The manual control requires either a long arm or a stick (and this is by design as it's considered not the normal mode).
+The wifi connexion is primarily MQTT.
+The remote is through MQTT with an option of a web page... that may or may not materialize.
+
+The initial housing is JUST for testing without getting electrocuted.
+The fittings are to be moved to the final housing when I have the proper measurements in hand tp print it.
+I have a further motor (with an offset axle) that I accidentally ordered that may also be put to use to raise and lower the projector.
+
+.image
+image::./openscad/projector/Control-Electronics.png[]
+
+.Openscad source
+----
+include::./projector/Control-Electronics.scad[]
+----
 
 
 ==== lid - 3D Object
