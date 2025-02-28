@@ -44,7 +44,71 @@ module motor(offset){
             }
     }
 }
-#motor("offset");
+
+module OLED() {
+    //OLED
+    //Variable for subtractions so as to be slightly above borders
+    diffWiggle = .2;
+    //PCB dimensions
+    PCB1306holeD = 2;
+    PCB1306holeOff = [2,2,0] ;
+    PCB1306 = [26.9, 27.9, 1.7] ;
+    //1306 Top components
+        LCDmaskY = 4; //how much to cover up at the bottom
+        LCDX = 27.5 ; // left to right
+        LCDY = 20 ; // topR to bottomR
+        LCDZ = 2 ; // height from PCB
+        LCDflexX = 13 ; //flex cable width
+        LCDflexY = 3 ; //flex cable length from LCD to edge
+    LCD = [LCDX, LCDY, LCDZ] ;
+    LCDpos = [0, 0, PCB1306.z] ; //sits on top of the PCB and is centered
+    LCDviewPos = [0, LCDmaskY/2, PCB1306.z] ; //on top of the PCB above the masked part
+    LCDmask = [LCD.x, LCDmaskY, LCD.z] ; // is part of the LCD so shares X and Z
+    LCDmaskPos = [0, -LCD.y/2 +LCDmask.y/2, LCDpos.z] ; // sits below the viewport of the LCD
+    LCDview = [LCD.x, LCD.y - LCDmask.y, LCD.z]; // is part of the LCD just without the masked part
+    LCDflex = [LCDflexX, LCDflexY, LCD.z] ; //is considered as high as the LCD
+    LCDflexPos = [0, -LCD.y/2 -LCDflex.y/2, PCB1306.z] ; //sits bellow the LCD
+    //1306 bottom clearance items
+    //array - put the parts together
+    extrudeFalse = false ; extrudeTrue = true ;
+    object = [
+        [PCB1306, [0, 0, 0], "green", extrudeFalse],
+        [LCDview, LCDviewPos, "black", extrudeTrue],
+        [LCDflex, LCDflexPos, "brown", extrudeTrue],
+        [LCDmask, LCDmaskPos, "grey", extrudeTrue]
+    ];
+    module pegs(XYZ,offset,holeD) {
+        //mounting holes - no need to zdiff as centered
+        //relative positions
+            H = XYZ.z ;
+            XY = [XYZ.x, XYZ.y, 0] ;
+            TR= [ [+1, 0, 0], [0, +1, 0], [0, 0, 0] ];
+            TL= [ [-1, 0, 0], [0, +1, 0], [0, 0, 0] ];
+            BR= [ [+1, 0, 0], [0, -1, 0], [0, 0, 0] ];
+            BL= [ [-1, 0, 0], [0, -1, 0], [0, 0, 0] ];
+            // move to TR then move back towards BL by offset etc 
+            posTR = (TR * XY/2) + (offset * BL) ;
+            posTL = (TL * XY/2) + (offset * BR) ;
+            posBR = (BR * XY/2) + (offset * TL) ;
+            posBL = (BL * XY/2) + (offset * TR) ;
+        translate (posTR) cylinder(h = H, d = holeD, center = true);
+        translate (posTL) cylinder(h = H, d = holeD, center = true);
+        translate (posBR) cylinder(h = H, d = holeD, center = true);
+        translate (posBL) cylinder(h = H, d = holeD, center = true);
+    }
+
+    module brickLayer(array) {
+        module blocks(list) {
+            translate (list[1]) color(list[2]) cube(list[0], center=true);
+        }
+        for ( i = [0 : len(array) - 1] ) { blocks(array[i]); }
+    }
+    //OUTPUT
+    difference(){
+        brickLayer(object);
+        pegs(PCB1306 + [0, 0, diffWiggle], PCB1306holeOff, PCB1306holeD);
+    }
+}
 module pin() {
     pinH = 10 ; pinD1 =5 ; pinD2 = 2;
     cylinder(h = pinH, d1 = pinD1, d2 = pinD2);
@@ -53,9 +117,23 @@ module emboss(height,halign,text){
     height = height + .02 ;
     translate([0,0,-height + .01]) linear_extrude(height) text(text,valign="center",halign=halign,size=5);
 }
+module statusLED() {
+    cylinder(h=20,d=3.5);
+    translate([0,0,10]) cube([5,5,2],center=true);
+    translate([0,0,5])cube([7,8,10],center=true);
+}
+module OLEDhole() {
+    //display cut out
+    cutOut = [25,15,10] ;
+    wiggle = [0,0,.01] ;
+    translate([0,2,-cutOut.z/2]-wiggle) cube(cutOut+wiggle,center=true);
+    //base plate
+    basePlate = [27.5,27.8,20] ;
+    translate([0,0,-basePlate.z/2-cutOut.z]) cube(basePlate,center=true);
+}
 
 //PCB mount
-*union() {
+union() {
     translate([-3,-3,0]) cube([76,50,1]);
     translate([0,0,0]) pin();
     translate([0,44.5,0]) pin();
@@ -77,3 +155,16 @@ translate([0,-50,0]) difference() {
     translate([50,4,0]) emboss(5,"left","Down");
 
 }
+
+//status
+translate([0,-100,0]) difference() {
+    translate([0,-3,-10]) cube([70,37,10]);
+    translate([10,10,-15]) statusLED();
+    translate([10,17,0]) emboss(5,"center","Status");
+    translate([40,15,8]) union() {
+        *translate([0,0,-11]) OLED();
+        OLEDhole();
+    }
+}
+
+translate([-40,0,0]) motor("offset");
