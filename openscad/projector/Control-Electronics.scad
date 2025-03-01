@@ -115,12 +115,12 @@ module pin() {
     cylinder(h = pinH, d1 = pinD1, d2 = pinD2);
 }
 
-module heatInset(height) {
+module heatInset(height,innerD,wallT) {
     //instead of Pin for final heat inset mounting
     difference() {
-        cylinder(h=height,d=7);
+        cylinder(h=height,r=innerD/2+wallT);
         //inside
-        translate([0,0,-.01]) cylinder(h=height+.02,d=4.8);
+        translate([0,0,-.01]) cylinder(h=height+.02,d=innerD);
     }
 }
 module emboss(height,halign,text){
@@ -128,32 +128,25 @@ module emboss(height,halign,text){
     translate([0,0,-height + .01]) linear_extrude(height) text(text,valign="center",halign=halign,size=5);
 }
 module statusLED() {
+    //light path (to be filled with hotglue
     cylinder(h=20,d=3.5);
-    translate([0,0,10]) cube([5,5,2],center=true);
+    //LED itself (raw neopixel with NO PCB)
+    translate([0,0,10]) cube([5.5,5.5,3],center=true);
     translate([0,0,5])cube([7,8,10],center=true);
 }
+
+
 module OLEDhole() {
     //display cut out
     cutOut = [25,15,10] ;
     wiggle = [0,0,.01] ;
     translate([0,2,-cutOut.z/2]-wiggle) cube(cutOut+wiggle,center=true);
     //base plate
-    basePlate = [27.5,27.8,20] ;
+    basePlate = [27.5,29,20] ;
     translate([0,0,-basePlate.z/2-cutOut.z]) cube(basePlate,center=true);
 }
-
-//PCB mount
-union() {
-    translate([-4,-5,0]) cube([78,54,2]);
-    translate([0,0,0]) heatInset(10);
-    translate([0,44.5,0]) heatInset(10);
-    translate([70,0,0]) heatInset(10);
-}
-
-
 //toggles
-translate([0,-50,0]) difference() {
-    translate([0,0,-10]) cube([70,20,10]);
+module toggly() {
     //switch auto/off/man
     translate([20,10,0]) rotate([0,0,90]) toggleSwitch(); 
     translate([10,4,0]) emboss(5,"center","Auto");
@@ -164,22 +157,114 @@ translate([0,-50,0]) difference() {
     translate([50,16,0]) emboss(5,"left","Up");
     translate([50,10,0]) emboss(5,"left","STOP");
     translate([50,4,0]) emboss(5,"left","Down");
-
 }
-
 //status
-translate([0,-100,0]) difference() {
-    translate([0,-3,-10]) cube([70,37,10]);
-    translate([10,10,-15]) statusLED();
-    translate([10,17,0]) emboss(5,"center","Status");
-    translate([40,15,8]) union() {
-        *translate([0,0,-11]) OLED();
-        OLEDhole();
+module statuses() {
+        translate([10,10,-15]) statusLED();
+        translate([10,17,0]) emboss(5,"center","Status");
+        translate([40,15,8]) OLEDhole();
+}
+// housing
+module housing(){
+    corner = [90, 60, 60] ;
+    wallT = 2 ; cornerD = 6 ; 
+    housingMounts = [   [0, 0, 0],
+                        [0, corner.y, 0],
+                        [corner.x, 0, 0],
+                        [corner.x, corner.y, 0]
+    ];
+    housingMountsIn = [ [0, 0, 0] + [wallT, wallT, wallT],
+                        [0, corner.y, 0] + [wallT, -wallT, wallT],
+                        [corner.x, 0, 0] + [-wallT, wallT, wallT],
+                        [corner.x, corner.y, 0] + [-wallT, -wallT, wallT]
+    ];
+    //PCB mount
+    mountPoints = [ [0,0,0],
+                    [0,45,0],
+                    [70,0,0]
+    ];
+    mountInnerD = 5 ; mountWallT = 2 ; mountH = 10; PCBoff = [10, 8, 0] ;
+    difference(){
+        hull() {
+            //outside Pillars
+            for (i = housingMounts) translate(i) cylinder(h = corner.z, d = cornerD);
+            }
+        hull() {
+            //inside Pillars
+            for (i = housingMountsIn) translate(i) cylinder(h = corner.z, d = cornerD);
+            }   
+        }
+    for (i = housingMountsIn) {
+        echo(i + [0, 0, -wallT] - [2, 2, 0]);
+        translate(i + [0, 0, -wallT]) heatInset(corner.z-wallT, 5, 2);
+    }     
+    //add the PCB mounts
+    translate(PCBoff) {
+        //and heat inset columns
+        for (i = mountPoints) translate(i) heatInset(mountH,mountInnerD,mountWallT);
     }
 }
 
+module housingLid(){
+    corner = [90, 60, 10] ;
+    wallT = 2 ; cornerD = 6 ; holeD = 3 ; holeHeadD = 6 ; holeHeadH = 3 ;
+    housingMounts = [   [0, 0, 0],
+                        [0, corner.y, 0],
+                        [corner.x, 0, 0],
+                        [corner.x, corner.y, 0]
+    ];
+    housingMountsIn = [ [0, 0, 0] + [wallT, wallT, wallT],
+                        [0, corner.y, 0] + [wallT, -wallT, wallT],
+                        [corner.x, 0, 0] + [-wallT, wallT, wallT],
+                        [corner.x, corner.y, 0] + [-wallT, -wallT, wallT]
+    ];
+    difference(){
+        union() {
+            hull() {
+                //outside Pillars
+                for (i = housingMounts) translate(i + [0,0,wallT]) cylinder(h = corner.z, d = cornerD);
+            }
+            hull() {
+            //intside Pillars
+            for (i = housingMountsIn) translate(i + [0,0,-wallT+.01]) cylinder(h = wallT, d = cornerD);
+        }
+        }
+        //inside Pillars
+        for (i = housingMountsIn) translate(i + [0, 0, -.01] + [0, 0, -wallT]) cylinder(h = corner.z +.2, d = holeD);
+        for (i = housingMountsIn) translate(i + [0, 0, corner.z - holeHeadH]) cylinder(h = holeHeadH +.1, d = holeHeadD);
+
+    }
+
+ }
+ 
+//
+//
+// STUFF prints here
+// 
+//
+ 
+//test the status led
+*difference() {
+    cube([10,10,10]);
+    translate([5,5,-8]) statusLED();
+}
+difference() {
+    housing();
+    translate([-10,30,30]) rotate([0,90,0]) cylinder(h=110,d=8);
+}
+ 
+translate([100, 0, 0]) difference() {
+    housingLid();
+    translate([7, 0, 12]) toggly();
+    translate([14, 25, 12]) statuses();
+}
+
+
+
+//Motor as reference
 translate([-75,0,0]) motor("offset");
 
+//Draft endcap
 translate([-70,-80,0]) union() {
     //approximation of cross sectio on casing!!! DRAFT
     cubeTest = [90,37,2] ;
