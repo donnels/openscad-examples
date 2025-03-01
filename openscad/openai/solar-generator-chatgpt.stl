@@ -692,6 +692,20 @@ solid OpenSCAD_Model
       vertex 0 1.91342 79.6194
     endloop
   endfacet
+  facet normal 0 -0.980785 0.195091
+    outer loop
+      vertex 0 -5 75
+      vertex 10 -4.6194 76.9134
+      vertex 0 -4.6194 76.9134
+    endloop
+  endfacet
+  facet normal 0 -0.980785 0.195091
+    outer loop
+      vertex 10 -4.6194 76.9134
+      vertex 0 -5 75
+      vertex 10 -5 75
+    endloop
+  endfacet
   facet normal 0 -0.980785 -0.195091
     outer loop
       vertex 0 -4.6194 73.0866
@@ -746,20 +760,6 @@ solid OpenSCAD_Model
       vertex 10 0 80
       vertex 0 1.91342 79.6194
       vertex 0 0 80
-    endloop
-  endfacet
-  facet normal 0 -0.980785 0.195091
-    outer loop
-      vertex 0 -5 75
-      vertex 10 -4.6194 76.9134
-      vertex 0 -4.6194 76.9134
-    endloop
-  endfacet
-  facet normal 0 -0.980785 0.195091
-    outer loop
-      vertex 10 -4.6194 76.9134
-      vertex 0 -5 75
-      vertex 10 -5 75
     endloop
   endfacet
   facet normal 0 -0.195089 -0.980786
@@ -949,20 +949,6 @@ solid OpenSCAD_Model
       vertex 45 1.91342 79.6194
       vertex 35 3.53553 78.5355
       vertex 35 1.91342 79.6194
-    endloop
-  endfacet
-  facet normal 0 -0.980785 0.195091
-    outer loop
-      vertex 35 -5 75
-      vertex 45 -4.6194 76.9134
-      vertex 35 -4.6194 76.9134
-    endloop
-  endfacet
-  facet normal 0 -0.980785 0.195091
-    outer loop
-      vertex 45 -4.6194 76.9134
-      vertex 35 -5 75
-      vertex 45 -5 75
     endloop
   endfacet
   facet normal 0 -0.980785 -0.195091
@@ -1159,6 +1145,20 @@ solid OpenSCAD_Model
       vertex 45 3.53553 71.4645
       vertex 35 1.91342 70.3806
       vertex 35 3.53553 71.4645
+    endloop
+  endfacet
+  facet normal 0 -0.980785 0.195091
+    outer loop
+      vertex 35 -5 75
+      vertex 45 -4.6194 76.9134
+      vertex 35 -4.6194 76.9134
+    endloop
+  endfacet
+  facet normal 0 -0.980785 0.195091
+    outer loop
+      vertex 45 -4.6194 76.9134
+      vertex 35 -5 75
+      vertex 45 -5 75
     endloop
   endfacet
   facet normal 0 -0.195089 -0.980786
