@@ -253,7 +253,7 @@ difference() {
     translate([-10,30,30]) rotate([0,90,0]) cylinder(h=110,d=8);
 }
  
-translate([100, 0, 0]) difference() {
+translate([0, -68, 0]) difference() {
     housingLid();
     translate([7, 0, 12]) toggly();
     translate([14, 25, 12]) statuses();
