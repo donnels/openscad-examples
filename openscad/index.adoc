@@ -683,6 +683,24 @@ include::./kitchen-door/strikeplate.scad[]
 ----
 
 
+=== knob - Project
+
+
+
+
+==== knob - 3D Object
+
+
+
+.image
+image::./openscad/knob/knob.png[]
+
+.Openscad source
+----
+include::./knob/knob.scad[]
+----
+
+
 === led-Casing - Project
 
 
