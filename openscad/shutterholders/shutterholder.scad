@@ -1,53 +1,56 @@
-$fn= 368;
-basedepth = 30;
-basewidth = 9;
-baseheight = 3;
+//spacer to keep the shutters from scraping
 
-holderheight = 15;
-holderwidth = 3;
-holderdepth = 15;
+$fn= 100;
+base = [42, 9, 3];
+deflector = [15, 3, 15] ;
+screwHoleD = 1.8 ;
+flareH = 1.6 ;
+flareD = 3.6 ;
+wiggle=.2;
 
-module holderleft() {
- 
-difference() { 
- 
-cube([basewidth, basedepth, baseheight]);
-translate([4.5, 25, -0.05]) cylinder(3.1, 1);
-translate([4.5, 5, -0.05]) cylinder(3.1, 1);
-
-    }
-
-    difference() {
-    
-    translate([-3, 15, 0]) 
-    cube([holderwidth, holderdepth, holderheight]);
-    translate([-3, 14.95, 12]) rotate([0, 315, 0]) cube([5, 15.1, 3]);
-    translate([0, 14.95, 0]) rotate([0, 225, 0]) cube([5, 15.1, 3]);
-    
+module deflector(deflector) {
+    //deflector
+    translate([deflector.x,0,deflector.z]) 
+        rotate([0,90,180]) 
+            linear_extrude(deflector.x) 
+                polygon(points  =   [   [0,0],
+                                        [deflector.z,0],
+                                        [deflector.z-deflector.y,deflector.y],
+                                        [deflector.y,deflector.y]
+                                    ]);
+}
+module screws() {
+        //screw hole
+        translate([base.x/2-base.y/2, base.y/2, -wiggle/2]) {
+            cylinder(d=screwHoleD, h=base.z + wiggle);
+            cylinder(h=flareH,d1=flareD,d2=screwHoleD);
         }
-  
+        //screw hole
+        translate([base.y/2, base.y/2, -wiggle/2]) {
+            cylinder(d=screwHoleD, h=base.z + wiggle);
+            cylinder(h=flareH,d1=flareD,d2=screwHoleD);
+        }
+}
+
+module holder(base,deflector,screwHoleD,flareH,flareD,side) {
+    textD = 1;
+    //depending on if right or left
+    offsetDeflector = (side == "R") ? [0,0,0] : (side == "L") ? [base.x-deflector.x,0,0] : undef;
+    offsetScrews = (side == "R") ? [base.x/2,0,0] : (side == "L") ? [0,0,0] : undef;
+    difference() { 
+        //mounting plate
+        cube(base);
+        translate(offsetScrews) screws();
+        //Label
+        translate([base.x/2,base.y/2,base.z-textD+wiggle/2])
+            linear_extrude(textD+wiggle) 
+                rotate([0,0,180]) 
+                    text(side,size=5,valign="center",halign="center");
+    }
+    translate(offsetDeflector) deflector(deflector);  
+ 
 }
     
-module holderright() {
+translate([0, 00, 0]) holder(base,deflector,screwHoleD,flareH,flareD,"L");
+translate([0, 14, 0]) holder(base,deflector,screwHoleD,flareH,flareD,"R");
 
-difference() { 
- 
-cube([basewidth, basedepth, baseheight]);
-translate([4.5, 25, -0.05]) cylinder(3.1, 1);
-translate([4.5, 5, -0.05]) cylinder(3.1, 1);
-
-    }
-
-    difference() {
-    
-    translate([-3, 0, 0]) 
-    cube([holderwidth, holderdepth, holderheight]);
-    translate([-3, -0.05, 12]) rotate([0, 315, 0]) cube([5, 15.1, 3]);
-    translate([0, -0.05, 0]) rotate([0, 225, 0]) cube([5, 15.1, 3]);
-    
-        }
-        
-}
-    
-holderleft();
-translate([0, 35, 0]) holderright();

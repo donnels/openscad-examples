@@ -81,7 +81,7 @@ module Axle(){
         cylinder(h=H+wiggle/2,d=D);
         translate([0,0,(H-insetH)+wiggle])cylinder(h=insetH+wiggle,d=insetD);
     }
-    translate([0,0,19]) cylinder(h=7,d=8.2);
+    translate([0,0,19]) cylinder(h=7,d=8.1);
 }
 //base
 module base() {
@@ -122,7 +122,7 @@ module base() {
 }
 //knob
 module knob(){
-knobTotH = 15 ; knobOuterD=41.4; knobInnerD=8.1; bearingLipD=12; bearingLipH=.5;wiggle=.2;
+knobTotH = 15 ; knobOuterD=41.8; knobInnerD=8.1; bearingLipD=12; bearingLipH=.5;wiggle=.2;
 screwHoleHeadH = 4; screwHoleHeadD=6; srewHoleT=1;screwHoleD=3;
     union(){
         translate([0,0,bearingLipH]) difference(){
@@ -144,7 +144,7 @@ screwHoleHeadH = 4; screwHoleHeadD=6; srewHoleT=1;screwHoleD=3;
 }
 
 //All together now and animate it
-*union(){
+*nunion(){
     //$t=1;
     translate([0,0,25+animate2]){
         color("silver") 608zz();
@@ -159,7 +159,7 @@ screwHoleHeadH = 4; screwHoleHeadD=6; srewHoleT=1;screwHoleD=3;
 //All together now and print it
 union(){
     translate([0,0,0]) color("silver")Axle();
-    translate([45,0,-5]) base();
-    translate([-30,0,16]) rotate([180,0,0])knob();
-    translate([0,60,1])discHolder();
+    *translate([45,0,-5]) base();
+    translate([-30,0,15.5]) rotate([180,0,0])knob();
+    *translate([0,60,1])discHolder();
 }
