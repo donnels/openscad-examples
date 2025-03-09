@@ -25,7 +25,7 @@ module 608zzHolder () {
     bearingH=7;   //608 skateboard bearing height
     bearingD=22;  //608 skateboard bearing diameter we'll add amillimeter or two later to account for the fitting ring
     fittingD=bearingD+7;  //outer diameter of the fitting ring for the bearing
-    nubAngle=360/8;  //the fitting nubs for the bearing at x degree rotation
+    nubAngle=360/16;  //the fitting nubs for the bearing at x degree rotation
     printerRadTol=.0; //add this value to the radius
     nubRad=.5;    //the nub radius for the bearing fitting ring
     module ring(inRad,outRad,height,tol) {
@@ -59,7 +59,8 @@ module disc(){
         wiggle=.02; angle=360/3;
         cylinder(h=6+wiggle/2,d=66.5);
         translate([0,0,1]) cylinder(h=5+wiggle,d=60);
-        translate([0,0,-wiggle])cylinder(h=10,d=10);
+        //bottom hole
+        translate([0,0,-wiggle])cylinder(h=10,d=18);
         //3 holes
         for (pos=[0:angle:360]) {
             *echo(pos);
@@ -70,18 +71,26 @@ module disc(){
 }
 module Axle(){
     wiggle=.02;
-    holderOuterD=13;holderInnerD=6.2;holderH=12;holderInnerH=10;holderSlot=2;
+    numMagnets = 3;
+    holderOuterD = 13;
+    holderInnerD = 6.15;
+    holderH = numMagnets * 2 + 2;
+    holderInnerH = numMagnets * 2;
+    holderSlot = 2;
+    //magnet holder head
     difference(){
         cylinder(h=holderH,d=holderOuterD);
         translate([0,0,-wiggle]) cylinder(h=holderInnerH+wiggle,d=holderInnerD);
         translate([0,0,holderInnerH/2-wiggle/2]) cube([holderSlot,holderOuterD+wiggle,holderInnerH+wiggle],center=true);
     }
+    //axle
     H=24; D=8; insetD=5; insetH=8;
     translate([0,0,holderH-wiggle/2]) difference(){
         cylinder(h=H+wiggle/2,d=D);
         translate([0,0,(H-insetH)+wiggle])cylinder(h=insetH+wiggle,d=insetD);
     }
-    translate([0,0,19]) cylinder(h=7,d=8.1);
+    //ring for better bering fit
+    translate([0,0,14]) cylinder(h=7,d=8.1);
 }
 //base
 module base() {
@@ -93,7 +102,8 @@ module base() {
             union(){
                 difference(){
                     cylinder(h=baseRingH,d=baseRingD);
-                    translate([0,0,-wiggle/2]) cylinder(h=baseRingH+wiggle,d=baseRingInnerD);
+                    translate([0,0,.5]) cylinder(h=baseRingH+wiggle,d=baseRingInnerD);
+                    translate([0,0,-wiggle/2]) cylinder(h=1+wiggle,d=18);
                 }
                 608zzHolder();
                 //rounded top
@@ -122,18 +132,24 @@ module base() {
 }
 //knob
 module knob(){
-knobTotH = 15 ; knobOuterD=41.8; knobInnerD=8.1; bearingLipD=12; bearingLipH=.5;wiggle=.2;
+knobTotH = 15 ; knobOuterD=41.8; knobInnerD=8.1; bearingLipD=12; bearingLipH=1;wiggle=.2;
 screwHoleHeadH = 4; screwHoleHeadD=6; srewHoleT=1;screwHoleD=3;
     union(){
-        translate([0,0,bearingLipH]) difference(){
-            cylinder(h=knobTotH,d=knobOuterD);
-            translate([0,0,-.1]) cylinder(h=knobTotH +0.2,d=knobInnerD);
-
-        }
+        //knob - central hole
+        translate([0,0,bearingLipH]) 
+            difference(){
+                union(){
+                    cylinder(h=knobTotH,d=knobOuterD);
+                    cylinder(h=.5,d=knobOuterD+1);
+                }
+                translate([0,0,-.1]) cylinder(h=knobTotH +0.2,d=knobInnerD);
+            }
+        //lip for bearing
         difference(){
             cylinder(h=bearingLipH,d=bearingLipD);
             translate([0,0,-wiggle/2])cylinder(h=bearingLipH+wiggle,d=knobInnerD);
         }
+        //screw hole inset
         translate([0,0,bearingLipH+knobTotH-screwHoleHeadH-srewHoleT])
         difference(){
             cylinder(h=screwHoleHeadH+srewHoleT,d=knobInnerD+srewHoleT);
@@ -144,22 +160,23 @@ screwHoleHeadH = 4; screwHoleHeadD=6; srewHoleT=1;screwHoleD=3;
 }
 
 //All together now and animate it
-*nunion(){
-    //$t=1;
-    translate([0,0,25+animate2]){
+*union(){
+    $t=1;
+    translate([0,0,25 + .5 + animate2]){
         color("silver") 608zz();
     }
-    translate([0,0,6+animate3]) color("silver")Axle();
+    translate([0,0,11.5+animate3]) color("silver")Axle();
     translate([0,0,20+animate5]) base();
     translate([0,0,32+animate1]) knob();
     translate([0,0,20+animate4])disc();
     translate([0,0,20+animate6])discHolder();
+    #translate([0,0,5-.5])cube([60,60,1],center=true);
 }
 
 //All together now and print it
 union(){
     translate([0,0,0]) color("silver")Axle();
-    *translate([45,0,-5]) base();
+    translate([45,0,-5]) base();
     translate([-30,0,15.5]) rotate([180,0,0])knob();
-    *translate([0,60,1])discHolder();
+    translate([0,60,1])discHolder();
 }
