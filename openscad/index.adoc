@@ -1300,6 +1300,24 @@ include::./solar/smallpv.scad[]
 ----
 
 
+=== spaceMushroomMod - Project
+
+
+
+
+==== mushroomMod - 3D Object
+
+
+
+.image
+image::./openscad/spaceMushroomMod/mushroomMod.png[]
+
+.Openscad source
+----
+include::./spaceMushroomMod/mushroomMod.scad[]
+----
+
+
 === spool-holder - Project
 
 
