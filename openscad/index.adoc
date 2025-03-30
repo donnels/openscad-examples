@@ -1323,6 +1323,32 @@ include::./spaceMushroomMod/mushroomMod.scad[]
 
 
 
+==== AluminumExtrusionProfile - 3D Object
+
+
+
+.image
+image::./openscad/spool-holder/AluminumExtrusionProfile.png[]
+
+.Openscad source
+----
+include::./spool-holder/AluminumExtrusionProfile.scad[]
+----
+
+
+==== ender3-led-mount - 3D Object
+
+
+
+.image
+image::./openscad/spool-holder/ender3-led-mount.png[]
+
+.Openscad source
+----
+include::./spool-holder/ender3-led-mount.scad[]
+----
+
+
 ==== spool - 3D Object
 
 
