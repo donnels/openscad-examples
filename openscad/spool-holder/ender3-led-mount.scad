@@ -12,9 +12,10 @@ include <AluminumExtrusionProfile.scad>
 
 
 
-*translate([0,10,0]) linear_extrude(10) 2020_extrusion_profile(slot = "v");
+#translate([0,10,0]) linear_extrude(10) 2020_extrusion_profile(slot = "v");
 
 module nut1(HolderSize) {
+    //This one is a bit tight
     linear_extrude (HolderSize) {
         for (i = [0:1:1]) {
             mirror([i,0,0]) 
@@ -31,6 +32,9 @@ module nut1(HolderSize) {
     }
 }
 module nut2(HolderSize) {
+    //this one is easy enough to get in
+    //could be a little more tight but works fine
+    //let's not overdo it :-)
     linear_extrude (HolderSize) {
         for (i = [0:1:1]) {
             mirror([i,0,0]) 
@@ -47,14 +51,28 @@ module nut2(HolderSize) {
     }
 }
 
-#nut1(10);
+*nut1(HolderSize);
 //The led holder part
-*translate([0,-(ledStripW + holderWallT)/2 + wiggle, HolderSize/2])
+translate([0,-(ledStripW + holderWallT)/2 + wiggle, HolderSize/2])
     difference(){    
         //The holder part
         cube([ledStripH + holderWallT, ledStripW + holderWallT, HolderSize],center=true);
         //The removed inside (led bar)
         cube([ledStripH, ledStripW, HolderSize + wiggle],center=true);
     }
-
-nut2(9.5);
+//The led holder part
+translate([0,-(ledStripW*2-holderWallT), HolderSize/2])
+    difference(){    
+        //The holder part
+        cube([ledStripH + holderWallT, ledStripW + holderWallT, HolderSize],center=true);
+        //The removed inside (led bar)
+        cube([ledStripH, ledStripW, HolderSize + wiggle],center=true);
+    }
+ translate([0,-(ledStripW*3)+2, HolderSize/2])
+    rotate([0,0,90])difference(){    
+        //The holder part
+        cube([ledStripH + holderWallT, ledStripW + holderWallT, HolderSize],center=true);
+        //The removed inside (led bar)
+        cube([ledStripH, ledStripW, HolderSize + wiggle],center=true);
+    }
+nut2(HolderSize);
