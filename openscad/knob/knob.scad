@@ -123,7 +123,7 @@ module baseBottom() {
         translate([0,0,.5]) cylinder(h=baseRingH+wiggle,d=baseRingInnerD);
         translate([0,0,-wiggle/2]) cylinder(h=baseRingH+wiggle,d=axleD);
         //3 holes
-        for (pos=[0:angle:360]) {rotate ([0,0,pos]) translate([screwOff,0,-wiggle/2]) cylinder(h=8,d=2.4);}
+        for (pos=[0:angle:360]) {rotate ([0,0,pos]) translate([screwOff,0,-wiggle/2]) cylinder(h=8,d=3);}
         //hole for cabling
         rotate([0,0,cablingDuctAngle])translate([30,0,3]) cube([5,10,10],center=true);
     }     
@@ -137,7 +137,7 @@ module baseTop() {
         translate([0,0,-.5]) cylinder(h=baseRingH+wiggle,d=baseRingInnerD);
         translate([0,0,-wiggle/2]) cylinder(h=baseRingH+wiggle,d=20);
         //3 holes
-        for (pos=[0:angle:360]) {rotate ([0,0,pos]) translate([screwOff,0,-wiggle/2]) cylinder(h=8,d=2.4);}
+        for (pos=[0:angle:360]) {rotate ([0,0,pos]) translate([screwOff,0,-wiggle/2]) cylinder(h=8,d=3);}
         //hole for cabling
         rotate([0,0,cablingDuctAngle])translate([30,0,3]) cube([5,10,10],center=true);
     }  
@@ -155,7 +155,7 @@ module base608zz() {
         }
         translate([0,0,-wiggle/2])cylinder(h = mountH+wiggle, d = 23);
         //3 holes
-        for (pos=[0:angle:360]) {rotate ([0,0,pos]) translate([31.5,0,-wiggle/2]) cylinder(h=8,d=2.4);}
+        for (pos=[0:angle:360]) {rotate ([0,0,pos]) translate([31.5,0,-wiggle/2]) cylinder(h=8,d=3);}
 
     }    
 }
@@ -174,8 +174,12 @@ module undercarriage() {
         }
         translate([0,0,-wiggle/2])cylinder(h = mountH+wiggle, d = 18);
         //3 holes
-        for (pos=[0:angle:360]) {rotate ([0,0,pos]) translate([31.5,0,-wiggle/2]) cylinder(h=8,d=2.4);}
-    }    
+        for (pos=[0:angle:360]) {rotate ([0,0,pos]) translate([31.5,0,-wiggle/2]) cylinder(h=8,d=3);}
+    }
+    translate([0,0,-14]) cylinder(h=1.5,d=40);  
+    //3 links
+    for (pos=[0:angle:360]) {rotate ([0,0,pos]) translate([18,0,-14]) cylinder(h=14.1,d=4);}
+
 }
 module roundedTop(){
     //rounded top
@@ -195,7 +199,7 @@ module roundedTop(){
         angle=360/3;
         for (pos=[0:angle:360]) {rotate ([0,0,pos]) translate([31.5,0,-wiggle/2]) cylinder(h=8,d=3.5);}
         //mount
-        mountH = 2; holderD=4; wiggle= .02;
+        mountH = 2; holderD=5; wiggle= .02;
         for (pos=[0:angle:360]) {
             hull(){
                 rotate([0,0,pos]) translate([31.8,0,-wiggle]) cylinder(h = mountH+wiggle, d = holderD);
@@ -274,22 +278,24 @@ module screws(length,headD,headH){
 }
 
 //version 2 re-design
-union(){
+rotate([0,0,360*$t]) union(){
     $t=0;
+    //$vpr=[360*$t,,00];
     animate1=50*(1-$t);     //Knob
         //608zz
     animate3=90*-(1-$t);    //axle goes down
     animate4=10*(1-$t);     //metal base
          //base
          //underbase
-    animateAxle = 80 * -(1-$t); translate([0, 0, 9 + animateAxle]) Axle();    
+    animateAxle = 50 * -(1-$t); rotate([0,0,720*(-$t)]) translate([0, 0, 9 + animateAxle]) Axle();    
+    animateknob = 80 * (1-$t); translate([0, 0, 30 + animateknob]) knob();
     animate608 = 30 * (1-$t); translate([0, 0, 22.5 + animate608]) 608zz();
     animatebase608zz = 15 * (1-$t); translate([0, 0, 22.5 + animatebase608zz]) base608zz();
     animatebaseBottom = 30 * -(1-$t); translate([0, 0, 17 + animatebaseBottom]) baseBottom();
     animatebaseTop = 5 * (1-$t) ; translate([0, 0, 20 + animatebaseTop]) baseTop();
     animateDisc = 15 * -(1-$t); translate([0, 0, 17.5 + animateDisc]) disc();
-    animateundercarriage = 40 * -(1-$t); translate([0, 0, 15 + animateundercarriage]) undercarriage();
-    animateScrews = 65 * -(1-$t); translate([0, 0, 13.5 + animateScrews]) screws(14,3,2);
+    animateundercarriage = 60 * -(1-$t); translate([0, 0, 15 + animateundercarriage]) undercarriage();
+    animateScrews = 80 * -(1-$t); translate([0, 0, 13.5 + animateScrews]) screws(14,3,2);
     animateroundedTop = 50 * (1-$t); translate([0,0,23+animateroundedTop]) roundedTop();
     *translate([0,0,-.5])cube([60,60,1],center=true);
 }
