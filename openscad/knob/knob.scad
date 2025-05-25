@@ -143,8 +143,15 @@ module baseTop() {
     }  
 }
 module base608zz() {
+    mountH = 2; angle=360/3; holderD=4.5; wiggle= .02;
     //bearing holder
-    608zzHolder(); mountH = 2; angle=360/3; holderD=4.5; wiggle= .02;
+    608zzHolder(); 
+    difference(){
+        translate([0,0,7.49]) cylinder(h=.52,d=29);
+        translate([0,0,7.4]) cylinder(h=1,d=20);
+    }
+    translate([0,0,8]) 608zzHolder();
+    //
     //mount
     difference(){
         for (pos=[0:angle:360]) {
@@ -156,7 +163,6 @@ module base608zz() {
         translate([0,0,-wiggle/2])cylinder(h = mountH+wiggle, d = 23);
         //3 holes
         for (pos=[0:angle:360]) {rotate ([0,0,pos]) translate([31.5,0,-wiggle/2]) cylinder(h=8,d=3);}
-
     }    
 }
 module undercarriage() {
@@ -247,39 +253,11 @@ module screws(length,headD,headH){
             for (pos=[0:angle:360]) {rotate ([0,0,pos]) translate([31.8,0,-wiggle/2]) cylinder(h=2,d=4);}
         }
     }
-//All together now and animate it
-*union(){
-    //$t=0;
-    animate1=50*(1-$t);     //Knob
-    animate2=10*(1-$t);     //608zz
-    animate3=90*-(1-$t);    //axle goes down
-    animate4=40*-(1-$t);     //metal base
-    animate5=20*-(1-$t);     //base
-    animate6=60*-(1-$t);     //underbase
-    animate7=10*-(1-$t);     //underbase
-    translate([0,0,25 + .5 + animate2]){
-        color("silver") 608zz();
-    }
-    translate([0,0,11.5+animate3]) color("silver")Axle();
-    #translate([0,0,32+animate7]) roundedTop();
-    #translate([0,0,20+animate5]) base();
-    translate([0,0,32+animate1]) knob();
-    translate([0,0,20+animate4])disc();
-    translate([0,0,20+animate6])discHolder();
-    *translate([0,0,5-.5])cube([60,60,1],center=true);
-}
 
-//All together now and print it
-*union(){
-    translate([0,0,0]) color("silver")Axle();
-    translate([45,0,-5]) base();
-    translate([-30,0,16]) rotate([180,0,0])knob();
-    translate([0,60,1])discHolder();
-}
 
 //version 2 re-design
 rotate([0,0,360*$t]) union(){
-    $t=0;
+    //$t=1;
     //$vpr=[360*$t,,00];
     animate1=50*(1-$t);     //Knob
         //608zz
@@ -288,9 +266,10 @@ rotate([0,0,360*$t]) union(){
          //base
          //underbase
     animateAxle = 50 * -(1-$t); rotate([0,0,720*(-$t)]) translate([0, 0, 9 + animateAxle]) Axle();    
-    animateknob = 80 * (1-$t); translate([0, 0, 30 + animateknob]) knob();
-    animate608 = 30 * (1-$t); translate([0, 0, 22.5 + animate608]) 608zz();
-    animatebase608zz = 15 * (1-$t); translate([0, 0, 22.5 + animatebase608zz]) base608zz();
+    animateknob = 80 * (1-$t); #translate([0, 0, 30 + animateknob]) knob();
+    animate6081 = 10 * (1-$t); translate([0, 0, 23 + animate6081]) 608zz();
+    animate608 = 32 * (1-$t); translate([0, 0, 30.5 + animate608]) 608zz();
+    animatebase608zz = 20 * (1-$t); translate([0, 0, 22.5 + animatebase608zz]) base608zz();
     animatebaseBottom = 30 * -(1-$t); translate([0, 0, 17 + animatebaseBottom]) baseBottom();
     animatebaseTop = 5 * (1-$t) ; translate([0, 0, 20 + animatebaseTop]) baseTop();
     animateDisc = 15 * -(1-$t); translate([0, 0, 17.5 + animateDisc]) disc();
