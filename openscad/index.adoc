@@ -412,6 +412,19 @@ include::./balcony-storage/Solar-equip-cover.scad[]
 ----
 
 
+==== andersonMount - 3D Object
+
+
+
+.image
+image::./openscad/balcony-storage/andersonMount.png[]
+
+.Openscad source
+----
+include::./balcony-storage/andersonMount.scad[]
+----
+
+
 ==== microshed - 3D Object
 
 
@@ -766,6 +779,19 @@ include::./midleton/test.scad[]
 === modelTruckRepair - Project
 
 
+
+
+==== bierbank - 3D Object
+
+
+
+.image
+image::./openscad/modelTruckRepair/bierbank.png[]
+
+.Openscad source
+----
+include::./modelTruckRepair/bierbank.scad[]
+----
 
 
 ==== steeringaxle - 3D Object
