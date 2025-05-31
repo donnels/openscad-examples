@@ -61,39 +61,48 @@ module lautsprecher() {
         translate([0,0,-boxXYZ.y+2]) cylinder(h=boxXYZ.y+wiggle,d=boxInnenD);
     }
 }
+module box () {
+    difference(){
+        color("grey") cube(boxXYZ);
+        translate([boxXYZ.x/2,0,boxXYZ.z/2]) rotate([90,0,0]) lautsprecher();
+    }
+}
 
 //drucken
 groesse=.5;
-*scale(groesse) {
-    //tisch
-    tischPlatte();
-    //bänke
-    translate ([0,57,0]) bankPlatte();
-    translate ([0,-32,0]) bankPlatte();
-    //beine
-    translate ([148,86,0]) rotate([0,-90,270]) Bein(bankXYZ,bankEcke,15);
-    translate ([13,86,0]) rotate([0,-90,270]) Bein(bankXYZ,bankEcke,15);
-    translate ([93,93,0]) rotate([0,-90,0]) Bein(bankXYZ,bankEcke,15);
-    translate ([146,93,0]) rotate([0,-90,0]) Bein(bankXYZ,bankEcke,15);
-    translate ([42,86,0]) rotate([0,-90,270]) Bein(tischXYZ,tischEcke,25);
-    translate ([95,86,0]) rotate([0,-90,270]) Bein(tischXYZ,tischEcke,25);
-}
-// ansehen
-translate([50,0,0]) scale(groesse) {
-    color("yellow") {
+*union(){
+    scale(groesse) {
         //tisch
-        translate([0,bankEcke/2+bankXYZ.y+5,tischXYZ.z]) tischPlatte();
-        //bank
-        translate([0,bankEcke/2,bankXYZ.z]) bankPlatte();
+        tischPlatte();
+        //bänke
+        translate ([0,57,0]) bankPlatte();
+        translate ([0,-32,0]) bankPlatte();
+        //beine
+        translate ([148,86,0]) rotate([0,-90,270]) Bein(bankXYZ,bankEcke,15);
+        translate ([13,86,0]) rotate([0,-90,270]) Bein(bankXYZ,bankEcke,15);
+        translate ([93,93,0]) rotate([0,-90,0]) Bein(bankXYZ,bankEcke,15);
+        translate ([146,93,0]) rotate([0,-90,0]) Bein(bankXYZ,bankEcke,15);
+        translate ([42,86,0]) rotate([0,-90,270]) Bein(tischXYZ,tischEcke,25);
+        translate ([95,86,0]) rotate([0,-90,270]) Bein(tischXYZ,tischEcke,25);
     }
-    color("green") {
-        translate([10,-beinDicke/2,0]) Bein(bankXYZ,bankEcke,15);
-        translate([10,tischEcke/2+bankXYZ.y+1.5,0]) Bein(tischXYZ,tischEcke,25);
-        translate([190,31,0]) rotate([0,0,180]) Bein(bankXYZ,bankEcke,15);
-        translate([190,86,0]) rotate([0,0,180]) Bein(tischXYZ,tischEcke,25);
-    }
+     translate([boxXYZ.z+25,-53,boxXYZ.y]) rotate([270,0,90]) box();
 }
-difference(){
-    color("grey") cube(boxXYZ);
-    translate([boxXYZ.x/2,0,boxXYZ.z/2]) rotate([90,0,0]) lautsprecher();
+
+// ansehen
+union() {
+    translate([50,0,0]) scale(groesse) {
+        color("yellow") {
+            //tisch
+            translate([0,bankEcke/2+bankXYZ.y+5,tischXYZ.z]) tischPlatte();
+            //bank
+            translate([0,bankEcke/2,bankXYZ.z]) bankPlatte();
+        }
+        color("green") {
+            translate([10,-beinDicke/2,0]) Bein(bankXYZ,bankEcke,15);
+            translate([10,tischEcke/2+bankXYZ.y+1.5,0]) Bein(tischXYZ,tischEcke,25);
+            translate([190,31,0]) rotate([0,0,180]) Bein(bankXYZ,bankEcke,15);
+            translate([190,86,0]) rotate([0,0,180]) Bein(tischXYZ,tischEcke,25);
+        }
+    }
+    box();
 }
