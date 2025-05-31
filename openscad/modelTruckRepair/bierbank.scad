@@ -51,12 +51,18 @@ module Bein(maase,ecke,kreuzH) {
 }
 //drucken
 groesse=.5;
+//tisch
 scale(groesse) tischPlatte();
-scale(groesse) translate ([0,60,0]) bankPlatte();
-scale(groesse) translate ([50,90,0]) rotate([0,-90,270]) Bein(bankXYZ,bankEcke,15);
-scale(groesse) translate ([140,90,0]) rotate([0,-90,270]) Bein(tischXYZ,tischEcke,25);
-scale(groesse) translate ([0,90,0]) rotate([0,-90,270]) Bein(bankXYZ,bankEcke,15);
-scale(groesse) translate ([80,90,0]) rotate([0,-90,270]) Bein(tischXYZ,tischEcke,25);
+//bänke
+scale(groesse) translate ([0,57,0]) bankPlatte();
+scale(groesse) translate ([0,-32,0]) bankPlatte();
+//beine
+scale(groesse) translate ([148,86,0]) rotate([0,-90,270]) Bein(bankXYZ,bankEcke,15);
+scale(groesse) translate ([13,86,0]) rotate([0,-90,270]) Bein(bankXYZ,bankEcke,15);
+scale(groesse) translate ([93,93,0]) rotate([0,-90,0]) Bein(bankXYZ,bankEcke,15);
+scale(groesse) translate ([146,93,0]) rotate([0,-90,0]) Bein(bankXYZ,bankEcke,15);
+scale(groesse) translate ([42,86,0]) rotate([0,-90,270]) Bein(tischXYZ,tischEcke,25);
+scale(groesse) translate ([95,86,0]) rotate([0,-90,270]) Bein(tischXYZ,tischEcke,25);
 // ansehen
 ////tisch
 //translate([0,bankEcke/2+bankXYZ.y+5,tischXYZ.z]) tischPlatte();
