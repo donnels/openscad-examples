@@ -1,11 +1,29 @@
 $fn = 100 ;
-module toggleSwitch() {
+module toggleSwitchSmall() {
     //twiddle the position a bit to account for material etc
     twiddle = [0,0,1] ;
     upperD = 6.5 ; upperH = 8.5 ;
     nutH   = 2 ; nutD   = 8 ;
     toggleH = 10 ; toggleD =1.5 ; toggleAngle = 10 ;
     toggleBody = [12.8,13.4,14] ; toggleBodyOff = [0,0,toggleBody.z/2] ;
+    totH = toggleBody.z + upperH ;
+    translate([0,0,-totH + nutH] + twiddle) {
+        //Nut
+        translate([0,0,toggleBody.z + upperH - nutH]) cylinder(h=nutH , d=nutD,$fn=6);
+        //upper part
+        cylinder(h=upperH + toggleBody.z, d=upperD);
+        //toggle
+        translate([0,0,toggleBody.z + upperH]) rotate([-toggleAngle,0,0]) cylinder(h=toggleH, d=toggleD);
+        translate(toggleBodyOff) cube(toggleBody,center=true);
+    }
+}
+module toggleSwitch() {
+    //twiddle the position a bit to account for material etc
+    twiddle = [0,0,1] ;
+    upperD = 12 ; upperH = 10.5 ;
+    nutH   = 2 ; nutD   = 17 ;
+    toggleH = 17 ; toggleD =2.5 ; toggleAngle = 10 ;
+    toggleBody = [20.5,32.5,30] ; toggleBodyOff = [0,0,toggleBody.z/2] ;
     totH = toggleBody.z + upperH ;
     translate([0,0,-totH + nutH] + twiddle) {
         //Nut
@@ -147,22 +165,21 @@ module OLEDhole() {
 }
 //toggles
 module toggly() {
-    //switch auto/off/man
-    translate([20,10,0]) rotate([0,0,90]) toggleSwitch(); 
+    //switch auto/man
+    translate([20,17,0]) rotate([0,0,90]) toggleSwitch(); 
     translate([10,4,0]) emboss(5,"center","Auto");
     translate([30,4,0]) emboss(5,"center","Man");
-    translate([20,17,0]) emboss(5,"center","OFF");
     //switch up/stop/down
-    translate([45,10,0]) toggleSwitch(); 
-    translate([50,16,0]) emboss(5,"left","Up");
-    translate([50,10,0]) emboss(5,"left","STOP");
-    translate([50,4,0]) emboss(5,"left","Down");
+    translate([50,17,0]) toggleSwitch(); 
+    translate([60,27,0]) emboss(5,"left","Up");
+    translate([60,17,0]) emboss(5,"left","STOP");
+    translate([60,7,0]) emboss(5,"left","Down");
 }
 //status
 module statuses() {
         translate([10,10,-15]) statusLED();
         translate([10,17,0]) emboss(5,"center","Status");
-        translate([40,15,8]) OLEDhole();
+        *translate([40,15,8]) OLEDhole();
 }
 // housing
 module housing(){
@@ -248,11 +265,11 @@ module housingLid(){
     cube([10,10,10]);
     translate([5,5,-8]) statusLED();
 }
-difference() {
+*difference() {
     housing();
     translate([-10,30,30]) rotate([0,90,0]) cylinder(h=110,d=8);
 }
- 
+//translate([0,68,58+50*$t])
 translate([0, -68, 0]) difference() {
     housingLid();
     translate([7, 0, 12]) toggly();
@@ -262,10 +279,10 @@ translate([0, -68, 0]) difference() {
 
 
 //Motor as reference
-translate([-75,0,0]) motor("offset");
+*translate([-75,0,0]) motor("offset");
 
 //Draft endcap
-translate([-70,-80,0]) union() {
+*translate([-70,-80,0]) union() {
     //approximation of cross sectio on casing!!! DRAFT
     cubeTest = [90,37,2] ;
     cube(cubeTest,center=true);
