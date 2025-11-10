@@ -92,6 +92,19 @@ include::./Howth-cieling-spots/lampRing.scad[]
 
 
 
+==== IkeaParts - 3D Object
+
+
+
+.image
+image::./openscad/Ikea-Repair/IkeaParts.png[]
+
+.Openscad source
+----
+include::./Ikea-Repair/IkeaParts.scad[]
+----
+
+
 ==== ikeabung - 3D Object
 
 This was a replacement foot for an IKEA shelf.
