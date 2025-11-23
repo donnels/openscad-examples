@@ -105,6 +105,19 @@ include::./Ikea-Repair/IkeaParts.scad[]
 ----
 
 
+==== cable-clip - 3D Object
+
+
+
+.image
+image::./openscad/Ikea-Repair/cable-clip.png[]
+
+.Openscad source
+----
+include::./Ikea-Repair/cable-clip.scad[]
+----
+
+
 ==== ikeabung - 3D Object
 
 This was a replacement foot for an IKEA shelf.
