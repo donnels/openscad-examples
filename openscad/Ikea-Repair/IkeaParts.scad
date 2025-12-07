@@ -19,7 +19,7 @@ ivarVPinSpace = 32;
 pos1 = [9,9,9];
 offsetH=[0,25,0];
 offsetV=[0,0,32];
-color("yellow") difference(){
+*color("yellow") difference(){
     cube(ivarSegment);
     //row 1
     translate(pos1) rotate([0,90,0]) translate([0,0,-26]) ivarPin();
@@ -32,4 +32,36 @@ color("yellow") difference(){
     translate(pos1+offsetV*2) rotate([0,90,0]) translate([0,0,-26]) ivarPin();
 
 }
-    color("silver")translate(pos1+offsetV*2) rotate([0,90,0]) translate([0,0,-26]) ivarPin();
+
+module adapter(){
+    color("silver")translate(pos1+offsetV*2) rotate([0,90,0]) translate([0,0,-26]) ivarPin(5.8,35);
+    color("silver")translate(pos1+offsetV) rotate([0,90,0]) translate([0,0,-26]) ivarPin(5.8,35);
+    #translate([-20,0,34]) cube([20,14.9,47]);
+}
+
+*    color("silver")translate(pos1+offsetV*2+offsetH) rotate([0,90,0]) translate([0,0,-26]) ivarPin();
+module pinHanger(){
+    positions = [40,20];
+    pinD = 6 ; hangerW = 20 ; hangerL = 50 ; hangerT = 5;
+    //top curve
+    rotate_extrude(angle=180) translate([pinD/2, 0]) square([hangerT, hangerW]);
+    //
+    translate([-pinD/2-hangerT/2,0,0]) cylinder(h=hangerW, d=hangerT);
+    //long pole with screw holes
+    difference(){
+        union(){
+            translate([pinD/2,-hangerL,0]) cube([hangerT,hangerL,hangerW]);
+            //add reinforcements here
+             for(pos = positions) {
+                translate([-8+6/2,-pos,10]) rotate([0,90,0])cylinder(h=8,d1=5,d2=20);
+             }
+        }
+        //substract screw holes here
+        for(pos = positions) {
+            translate([-10+6/2,-pos,10]) rotate([0,90,0])cylinder(h=20,d=2);
+        }
+    }
+}
+
+*cylinder(h=30,d=6);
+pinHanger();
