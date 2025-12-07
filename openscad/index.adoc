@@ -66,6 +66,24 @@ include::./Axle/Axle.scad[]
 ----
 
 
+=== Device-holder - Project
+
+
+
+
+==== mount - 3D Object
+
+
+
+.image
+image::./openscad/Device-holder/mount.png[]
+
+.Openscad source
+----
+include::./Device-holder/mount.scad[]
+----
+
+
 === Howth-cieling-spots - Project
 
 
@@ -500,6 +518,19 @@ include::./bins/draft-holder.scad[]
 ----
 
 
+==== hingeAugment - 3D Object
+
+
+
+.image
+image::./openscad/bins/hingeAugment.png[]
+
+.Openscad source
+----
+include::./bins/hingeAugment.scad[]
+----
+
+
 ==== strutinsert - 3D Object
 
 
@@ -755,6 +786,19 @@ image::./openscad/led-Casing/CasingLED.png[]
 .Openscad source
 ----
 include::./led-Casing/CasingLED.scad[]
+----
+
+
+==== ledClip - 3D Object
+
+
+
+.image
+image::./openscad/led-Casing/ledClip.png[]
+
+.Openscad source
+----
+include::./led-Casing/ledClip.scad[]
 ----
 
 
