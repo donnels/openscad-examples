@@ -16,7 +16,7 @@ module topButton(){
             //the sphere to be the rounded top (should always be larger (r) than the z of button/2 or button will be
             translate([buttonTop.x/2,buttonTop.y/2,-r+buttonTop.z]) sphere(r);
         }
-        translate([buttonTop.x/2,buttonTop.y/2,buttonTop.z-textDepth]) linear_extrude(textDepth+wiggle)text("K",valign="center",halign="center",size=3.5);
+        *translate([buttonTop.x/2,buttonTop.y/2,buttonTop.z-textDepth]) linear_extrude(textDepth+wiggle)text("K",valign="center",halign="center",size=3.5);
     }
 }
 
