@@ -64,10 +64,10 @@ module pinHanger(){
 }
 
 //VISUALS
-translate([0,0,450]){
+translate([0,0,0]){
     ivarSegment();
     translate([-20,9+25,9+64])rotate([90,0,90]) pinHanger();
-    adapter();
     translate([-20,9+25,9+64]) rotate([0,90,0]) color("silver") ivarPin();
+    adapter();
 }
-color("grey")ilt();
+*color("grey")ilt();
