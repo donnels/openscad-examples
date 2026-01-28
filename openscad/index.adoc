@@ -36,7 +36,12 @@ include::./Amplifier/VacuumPreAmplifierBase.scad[]
 
 ==== berlinbutton - 3D Object
 
-
+Slicing this with cura doesn't generate supports. 
+And I tried hard. 
+Problem is that the brim in this object needs a support.
+When one looks at it under the microscope the first and even second and third layer are off at the corner they start at.
+Cura just refuses to generate a support.
+There is a 2-3 layer hang. not good!
 
 .image
 image::./openscad/Amplifier/berlinbutton.png[]
@@ -740,6 +745,19 @@ include::./kitchen-door/KitchenDoorHoleStopper.scad[]
 ----
 
 
+==== plug - 3D Object
+
+
+
+.image
+image::./openscad/kitchen-door/plug.png[]
+
+.Openscad source
+----
+include::./kitchen-door/plug.scad[]
+----
+
+
 ==== skirtingpatch - 3D Object
 
 
@@ -1075,6 +1093,19 @@ include::./piZero/RPi_zero_mount.scad[]
 ----
 
 
+==== laserMount - 3D Object
+
+
+
+.image
+image::./openscad/piZero/laserMount.png[]
+
+.Openscad source
+----
+include::./piZero/laserMount.scad[]
+----
+
+
 ==== piZeroCluster-power - 3D Object
 
 
@@ -1085,6 +1116,19 @@ image::./openscad/piZero/piZeroCluster-power.png[]
 .Openscad source
 ----
 include::./piZero/piZeroCluster-power.scad[]
+----
+
+
+==== upsmountpluscam - 3D Object
+
+
+
+.image
+image::./openscad/piZero/upsmountpluscam.png[]
+
+.Openscad source
+----
+include::./piZero/upsmountpluscam.scad[]
 ----
 
 
