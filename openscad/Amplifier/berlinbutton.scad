@@ -1,10 +1,10 @@
 //button for radio tape counter reset replacement
-$fn=360; 
+$fn=100; 
 r = 6 ; //This SHOULD NOT be less than 1/2 of top z
-buttonTop = [4,4,11] ;
-buttonBottom = [5,5,6] ;
-buttonBottomCavity = [3.1,3.1,7] ;
-buttonBrim = [6,6,1] ;
+buttonTop = [4, 4, 11] ;
+buttonBottom = [5, 5, 6] + [1, 1, 0]; //plus oustide material as it should be ok
+buttonBottomCavity = [3.1, 3.1, 7] + [.2, .2, 0] ; //plus inside wiggle as the plastic shrinks
+buttonBrim = [6, 6, 1] ;
 wiggle = .01;
 textDepth = 1;
 
