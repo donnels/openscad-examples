@@ -895,6 +895,19 @@ include::./modelTruckRepair/bierbank.scad[]
 ----
 
 
+==== photometer - 3D Object
+
+
+
+.image
+image::./openscad/modelTruckRepair/photometer.png[]
+
+.Openscad source
+----
+include::./modelTruckRepair/photometer.scad[]
+----
+
+
 ==== steeringaxle - 3D Object
 
 
